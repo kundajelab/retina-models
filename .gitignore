@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# surag
+*.bed
+*.bw
+*.h5
+
 # Distribution / packaging
 .Python
 build/
