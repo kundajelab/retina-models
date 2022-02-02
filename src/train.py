@@ -20,7 +20,7 @@ def subsample_nonpeak_data(nonpeak_seqs, nonpeak_cts, peak_data_size, negative_s
     return nonpeak_seqs, nonpeak_cts
 
 
-class ChromBPNetBatchGenerator(keras.utils.Sequence):
+class BatchGenerator(keras.utils.Sequence):
     """
     This generator randomly crops (=jitter) and revcomps training examples for 
     every epoch 
@@ -87,7 +87,7 @@ def train_loop(model, inputlen, outputlen, train_peak_seqs, train_nonpeak_seqs, 
 
     # need generator to crop and revcomp aug training examples, but not for 
     # validation. 
-    train_generator = ChromBPNetBatchGenerator(train_peak_seqs, train_nonpeak_seqs, 
+    train_generator = BPNetBatchGenerator(train_peak_seqs, train_nonpeak_seqs, 
                                                train_peak_cts, train_nonpeak_cts, negative_sampling, negative_sampling_ratio, inputlen, outputlen, batch_size)
 
     callbacks = train_utils.get_callbacks(early_stop, output_prefix)
