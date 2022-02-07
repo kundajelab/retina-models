@@ -55,8 +55,8 @@ def main():
     cur_pair = (all_test_logcts,
                 np.vstack([test_peaks_pred_logcts,
                            test_nonpeaks_pred_logcts]).ravel())
-    metrics['chrombpnet_cts_pearson_peaks_nonpeaks'] = scipy.stats.pearsonr(*cur_pair)[0]
-    metrics['chrombpnet_cts_spearman_peaks_nonpeaks'] = scipy.stats.spearmanr(*cur_pair)[0]
+    metrics['bpnet_cts_pearson_peaks_nonpeaks'] = scipy.stats.pearsonr(*cur_pair)[0]
+    metrics['bpnet_cts_spearman_peaks_nonpeaks'] = scipy.stats.spearmanr(*cur_pair)[0]
 
     cur_pair = ([1]*len(test_peaks_pred_logcts) + [0]*len(test_nonpeaks_pred_logcts), 
                  np.vstack([test_peaks_pred_logcts,
@@ -65,16 +65,16 @@ def main():
 
     peaks_test_logcts = np.log(1 + test_peaks_cts.sum(-1))
     cur_pair = (peaks_test_logcts, test_peaks_pred_logcts.ravel())
-    metrics['chrombpnet_cts_pearson_peaks'] =  scipy.stats.pearsonr(*cur_pair)[0]
-    metrics['chrombpnet_cts_spearman_peaks'] = scipy.stats.spearmanr(*cur_pair)[0]
+    metrics['bpnet_cts_pearson_peaks'] =  scipy.stats.pearsonr(*cur_pair)[0]
+    metrics['bpnet_cts_spearman_peaks'] = scipy.stats.spearmanr(*cur_pair)[0]
 
     # profile metrics (all within peaks)
     cur_pair = (softmax(test_peaks_pred_logits), test_peaks_cts)
-    metrics['chrombpnet_profile_median_jsd_peaks'] = np.median(get_jsd(*cur_pair)) 
+    metrics['bpnet_profile_median_jsd_peaks'] = np.median(get_jsd(*cur_pair)) 
 
     cur_pair = (softmax(test_peaks_pred_logits), 
                 test_peaks_cts[:, np.random.permutation(test_peaks_cts.shape[1])])
-    metrics['chrombpnet_profile_median_jsd_peaks_randomized'] = np.median(get_jsd(*cur_pair))
+    metrics['bpnet_profile_median_jsd_peaks_randomized'] = np.median(get_jsd(*cur_pair))
 
     with open(args.output_prefix + ".metrics.json", "w") as f:
         json.dump(metrics, f, ensure_ascii=False, indent=4)
