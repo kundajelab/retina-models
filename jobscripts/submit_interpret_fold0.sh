@@ -15,7 +15,7 @@ cd /home/users/surag/kundajelab/retina-models/src
 for x in `ls $BASE/bigwigs`
  do
   n=$(basename -s ".bw" $x);
-  sbatch --job-name train_$n \
+  sbatch --job-name interpret_${n} \
          --output $BASE/models/$RUNNAME/fold0/logs/$n.interpret.log.txt \
          --error $BASE/models/$RUNNAME/fold0/logs/$n.interpret.err.txt \
          --mem 100G \
