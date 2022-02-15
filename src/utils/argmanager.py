@@ -55,7 +55,7 @@ def fetch_interpret_args():
     parser.add_argument("-m", "--model", type=str, required=True, help="Path to trained model")
     parser.add_argument("-o", "--output-prefix", type=str, required=True, help="Output prefix")
     parser.add_argument("-d", "--debug-chr", nargs="+", type=str, default=None, help="Run for specific chromosomes only (e.g. chr1 chr2) for debugging")
-    parser.add_argument("-p", "--profile-or-counts", nargs="+", type=str, default=["counts", "profile"], choices=["counts", "profile"],
+    parser.add_argument("-p", "--profile-or-counts", nargs="+", type=str, default=["counts"], choices=["counts", "profile"],
                         help="use either counts or profile or both for running shap")
 
     args = parser.parse_args()
