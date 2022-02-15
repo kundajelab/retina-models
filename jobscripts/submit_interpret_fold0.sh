@@ -23,5 +23,5 @@ for x in `ls $BASE/bigwigs`
          --genome /scratch/users/surag/genomes/GRCh38_no_alt_analysis_set_GCA_000001405.15.fasta \
          --model $BASE/models/$RUNNAME/fold0/saved/$n.h5 \
          --regions $BASE/peaks/peaks_3000/${n}_peakCalls_sorted.bed \
-         --output-prefix $BASE/models/$RUNNAME/fold0/interpret/$n \
+         --output-prefix $BASE/models/$RUNNAME/fold0/interpret/$n 
  done
